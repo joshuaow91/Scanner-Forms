@@ -2,9 +2,11 @@ import { useState } from 'react';
 
 const FilterForm = () => {
   const [forms, setForms] = useState([]);
+  const [formCount, setFormCount] = useState(0);
 
   const addForm = () => {
     setForms([...forms, {}]);
+    setFormCount(formCount + 1);
   };
 
   const handleSubmit = (event) => {
@@ -12,6 +14,7 @@ const FilterForm = () => {
     // placeholder logic
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData.entries());
+    data.formCount = formCount;
     console.log(data); // this will show you in the browser console the json, new forms will have _0, _1, etc added to the key name.
     // add api call here with either the native fetch api or the axios library
   };
